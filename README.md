@@ -1,2 +1,2 @@
 # SmartMirrorV2
-GUI For 
+GUI For a Smart Mirror
