@@ -1,5 +1,8 @@
 from tkinter import *
+from PIL import ImageTk, Image
 from date import Date
+from weather import Weather
+
 
 # Class to handle the GUI for the Smart Mirror
 class MainFrame:
@@ -19,6 +22,11 @@ class MainFrame:
         self.time_text.pack()
         self.get_time()
 
+        # Weather Label
+        self.weather_text = Label(self.root, compound="left")
+        self.weather_text.pack()
+        self.get_weather()
+
 
         self.root.mainloop()
 
@@ -33,6 +41,23 @@ class MainFrame:
     def get_time(self):
         self.time_text.configure(text=Date.get_time())
         self.time_text.after(500, self.get_time)
+
+    
+
+    def get_weather(self):
+        # Get weather info
+        weather_info = Weather.weather_api_call()
+
+        # Prepare the image for the tkinter label
+        icon = Image.open(weather_info[0])
+        weather_icon = ImageTk.PhotoImage(icon)
+
+        # Place weather icon and weather temperature in the label
+        self.weather_text.configure(image=weather_icon, text=weather_info[1])
+        # Prevent garbage collection from collecting the weather icon
+        self.weather_text.image = weather_icon
+        
+        self.weather_text.after(60000, self.get_weather)
 
 
 
