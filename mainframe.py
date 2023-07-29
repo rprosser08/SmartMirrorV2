@@ -4,15 +4,23 @@ from date import Date
 # Class to handle the GUI for the Smart Mirror
 class MainFrame:
     def __init__(self):
-        root = Tk()
-        root.title("Smart Mirror")
-        root.configure(background="black")
-        root.attributes("-fullscreen", True)
-        date_text = Label(root, text=Date.get_date())
+        self.root = Tk()
+        self.root.title("Smart Mirror")
+        self.root.configure(background="black")
+        self.root.attributes("-fullscreen", True)
+        self.get_date()
+        self.get_time()
+        self.root.mainloop()
+
+    
+    def get_date(self):
+        date_text = Label(self.root, text=Date.get_date())
         date_text.pack()
-        time_text = Label(root, text=Date.get_time())
+
+    
+    def get_time(self):
+        time_text = Label(self.root, text=Date.get_time())
         time_text.pack()
-        root.mainloop()
 
 
 
