@@ -11,22 +11,27 @@ class MainFrame:
         self.root.title("Smart Mirror")
         self.root.configure(background="black")
         self.root.attributes("-fullscreen", True)
+        self.screen_width = self.root.winfo_width()
+        self.screen_height = self.root.winfo_height()
+
+        # Configure the column weights(widths)
+        self.root.columnconfigure(0, weight=1)
+        self.root.columnconfigure(1, weight=1)
 
         # Date Label
-        self.date_text = Label(self.root)
-        self.date_text.pack()
+        self.date_text = Label(self.root, background='black', foreground='white')
+        self.date_text.grid(row=0, column=0, sticky='nw')
         self.get_date()
 
         # Time Label
-        self.time_text = Label(self.root)
-        self.time_text.pack()
+        self.time_text = Label(self.root, background='black', foreground='white')
+        self.time_text.grid(row=1, column=0, sticky='nw')
         self.get_time()
 
         # Weather Label
-        self.weather_text = Label(self.root, compound="left")
-        self.weather_text.pack()
+        self.weather_text = Label(self.root, compound="left", background='black', foreground='white')
+        self.weather_text.grid(row=0, column=1, sticky='ne')
         self.get_weather()
-
 
         self.root.mainloop()
 
