@@ -2,6 +2,7 @@ from tkinter import *
 from PIL import ImageTk, Image
 from date import Date
 from weather import Weather
+from news import News
 
 
 # Class to handle the GUI for the Smart Mirror
@@ -28,6 +29,11 @@ class MainFrame:
         self.weather_text.grid(row=0, column=1, sticky='ne')
         self.get_weather()
 
+        # News Label
+        self.news_text = Label(self.root, background="black", foreground="white")
+        self.news_text.grid(row=1, column=0, columnspan=2)
+        self.get_news()
+
         self.root.mainloop()
 
     
@@ -52,6 +58,12 @@ class MainFrame:
         self.weather_text.image = weather_icon
         
         self.weather_text.after(60000, self.get_weather)
+
+
+    def get_news(self):
+        news_articles = News.news_api_call()
+
+        self.news_text.configure(text=news_articles[0]['title'] + "\n" + news_articles[0]['abstract'])
 
 
 
