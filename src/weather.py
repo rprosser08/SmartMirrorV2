@@ -9,8 +9,8 @@ class Weather:
         WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
         response = requests.get(f"https://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q=14201").json()
 
-        # Get the temperature and convert to int to remove decimals
-        weather_temp = int(response['current']['temp_f'])
+        # Get the temperature and convert to int to remove decimals, then to a string to add "degree" F
+        weather_temp = str(int(response['current']['temp_f'])) + "\u00B0F"
 
         # Get the path to icon and format to the file structure
         full_icon_path = response['current']['condition']['icon']

@@ -18,37 +18,26 @@ class MainFrame:
         self.root.columnconfigure(0, weight=1)
         self.root.columnconfigure(1, weight=1)
 
-        # Date Label
-        self.date_text = Label(self.root, background='black', foreground='white')
+        # Date and Time Label
+        self.date_text = Label(self.root, background='black', foreground='white', font=("Arial", 25))
         self.date_text.grid(row=0, column=0, sticky='nw')
         self.get_date()
 
-        # Time Label
-        self.time_text = Label(self.root, background='black', foreground='white')
-        self.time_text.grid(row=1, column=0, sticky='nw')
-        self.get_time()
-
         # Weather Label
-        self.weather_text = Label(self.root, compound="left", background='black', foreground='white')
+        self.weather_text = Label(self.root, compound="left", background='black', foreground='white', font=("Arial", 25))
         self.weather_text.grid(row=0, column=1, sticky='ne')
         self.get_weather()
 
         self.root.mainloop()
 
     
-    # Responsible for updating the current date every 500ms
+    # Responsible for updating the current date and time every 500ms
     def get_date(self):
-        self.date_text.configure(text=Date.get_date())
+        self.date_text.configure(text=Date.get_date() + "\n" + Date.get_time())
         self.date_text.after(500, self.get_date)
 
-    
-    # Responsible for updating the current time every 500ms
-    def get_time(self):
-        self.time_text.configure(text=Date.get_time())
-        self.time_text.after(500, self.get_time)
 
-    
-
+    # Responsible for updating the current weather every 1 minute
     def get_weather(self):
         # Get weather info
         weather_info = Weather.weather_api_call()
