@@ -60,13 +60,24 @@ class MainFrame:
         self.weather_text.after(60000, self.get_weather)
 
 
+    # Responsible for getting the news articles information and resetting the counter
     def get_news(self):
-        news_articles = News.news_api_call()
+        self.news_articles = News.news_api_call()
 
-        self.news_text.configure(text=news_articles[0]['title'] + "\n" + news_articles[0]['abstract'])
+        self.i = 0
+        self.update_news()
 
+    # Responsible for updating which news articles are showing
+    def update_news(self):
+        self.news_text.configure(text=self.news_articles[self.i]['title'] + "\n" + self.news_articles[self.i]['abstract'])
+        self.i += 1
 
-
+        # If there are more articles to show, show the next article in the list
+        # Otherise make another API call
+        if self.i < len(self.news_articles):
+            self.news_text.after(30000, self.update_news)
+        else:
+            self.news_text.after(30000, self.get_news)
 
 if __name__ == "__main__":
     MainFrame()
