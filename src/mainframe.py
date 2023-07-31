@@ -16,8 +16,14 @@ class MainFrame:
         self.screen_height = self.root.winfo_height()
 
         # Configure the column weights(widths)
-        self.root.columnconfigure(0, weight=1)
-        self.root.columnconfigure(1, weight=1)
+        self.root.columnconfigure(0, weight=1, uniform='column')
+        self.root.columnconfigure(1, weight=1, uniform='column')
+        self.root.columnconfigure(2, weight=1, uniform='column')
+
+        # Configure the row weights(lengths)
+        self.root.rowconfigure(0, weight=8, uniform='row')
+        self.root.rowconfigure(1, weight=2, uniform='row')
+        # self.root.rowconfigure(2, weight=1)
 
         # Date and Time Label
         self.date_text = Label(self.root, background='black', foreground='white', font=("Arial", 25))
@@ -26,12 +32,12 @@ class MainFrame:
 
         # Weather Label
         self.weather_text = Label(self.root, compound="left", background='black', foreground='white', font=("Arial", 25))
-        self.weather_text.grid(row=0, column=1, sticky='ne')
+        self.weather_text.grid(row=0, column=2, sticky='ne')
         self.get_weather()
 
         # News Label
-        self.news_text = Label(self.root, background="black", foreground="white")
-        self.news_text.grid(row=1, column=0, columnspan=2)
+        self.news_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 3)
+        self.news_text.grid(row=1, column=1, sticky='ew')
         self.get_news()
 
         self.root.mainloop()
