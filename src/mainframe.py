@@ -12,6 +12,9 @@ class MainFrame:
         self.root.title("Smart Mirror")
         self.root.configure(background="black")
         self.root.attributes("-fullscreen", True)
+
+        # Cause screen to update width and height if necessary
+        self.root.update_idletasks()
         self.screen_width = self.root.winfo_width()
         self.screen_height = self.root.winfo_height()
 
@@ -23,7 +26,7 @@ class MainFrame:
         # Configure the row weights(lengths)
         self.root.rowconfigure(0, weight=8, uniform='row')
         self.root.rowconfigure(1, weight=1, uniform='row')
-        self.root.rowconfigure(2, weight=1)
+        self.root.rowconfigure(2, weight=1, uniform='row')
 
         # Date and Time Label
         self.date_text = Label(self.root, background='black', foreground='white', font=("Arial", 25))
@@ -36,10 +39,10 @@ class MainFrame:
         self.get_weather()
 
         # News Label
-        self.news_title_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 3, font=("Arial", 25))
-        self.news_title_text.grid(row=1, column=1, sticky='sew')
-        self.news_abstract_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 3)
-        self.news_abstract_text.grid(row=2, column=1, sticky='new')
+        self.news_title_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 2, font=("Arial", 25))
+        self.news_title_text.grid(row=1, column=0, columnspan=3, sticky='sew')
+        self.news_abstract_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 2)
+        self.news_abstract_text.grid(row=2, column=0, columnspan=3, sticky='new')
         self.get_news()
 
         self.root.mainloop()
