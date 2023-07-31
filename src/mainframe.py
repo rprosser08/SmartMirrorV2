@@ -22,8 +22,8 @@ class MainFrame:
 
         # Configure the row weights(lengths)
         self.root.rowconfigure(0, weight=8, uniform='row')
-        self.root.rowconfigure(1, weight=2, uniform='row')
-        # self.root.rowconfigure(2, weight=1)
+        self.root.rowconfigure(1, weight=1, uniform='row')
+        self.root.rowconfigure(2, weight=1)
 
         # Date and Time Label
         self.date_text = Label(self.root, background='black', foreground='white', font=("Arial", 25))
@@ -36,8 +36,10 @@ class MainFrame:
         self.get_weather()
 
         # News Label
-        self.news_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 3)
-        self.news_text.grid(row=1, column=1, sticky='ew')
+        self.news_title_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 3, font=("Arial", 25))
+        self.news_title_text.grid(row=1, column=1, sticky='sew')
+        self.news_abstract_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 3)
+        self.news_abstract_text.grid(row=2, column=1, sticky='new')
         self.get_news()
 
         self.root.mainloop()
@@ -75,15 +77,16 @@ class MainFrame:
 
     # Responsible for updating which news articles are showing
     def update_news(self):
-        self.news_text.configure(text=self.news_articles[self.i]['title'] + "\n" + self.news_articles[self.i]['abstract'])
+        self.news_title_text.configure(text=self.news_articles[self.i]['title'])
+        self.news_abstract_text.configure(text=self.news_articles[self.i]['abstract'])
         self.i += 1
 
         # If there are more articles to show, show the next article in the list
         # Otherise make another API call
         if self.i < len(self.news_articles):
-            self.news_text.after(30000, self.update_news)
+            self.news_title_text.after(30000, self.update_news)
         else:
-            self.news_text.after(30000, self.get_news)
+            self.news_title_text.after(30000, self.get_news)
 
 if __name__ == "__main__":
     MainFrame()
