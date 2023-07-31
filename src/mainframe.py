@@ -10,7 +10,7 @@ class MainFrame:
     def __init__(self):
         self.root = Tk()
         self.root.title("Smart Mirror")
-        self.root.configure(background="black")
+        self.root.configure(background="black", cursor="none")
         self.root.attributes("-fullscreen", True)
 
         # Cause screen to update width and height if necessary
