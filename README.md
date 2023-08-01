@@ -5,11 +5,8 @@ GUI for a Smart Mirror
 This code is for the GUI component for a smart mirror. It includes the current time and date, the current weather, news headlines with abstracts.
 
 ## Instructions
-Until the script is created, you will need to download the necessary dependencies. You will also need to create free accounts with [WeatherAPI.com](https://www.weatherapi.com/),
-and [The New York Times](https://developer.nytimes.com). You will put these API keys into a .env file located in the root folder. The WeatherAPI API key will need to be called "WEATHER_API_KEY" and the New York Times API key will need to be called "NYT_API_KEY". Finally you will run the "mainframe.py" file to launch the smart mirror.
-
-## TODO
-- Create Script to download necessary dependencies
+Firstly, you will also need to create free accounts with [WeatherAPI.com](https://www.weatherapi.com/),
+and [The New York Times](https://developer.nytimes.com). Finally, from the root folder you will need to run `./smartMirror.sh` and answer the prompts.
 
 ## Resources
 Powered by [WeatherAPI.com](https://www.weatherapi.com/)  
