@@ -21,7 +21,6 @@ class MainFrame:
         # Configure the column weights(widths)
         self.root.columnconfigure(0, weight=1, uniform='column')
         self.root.columnconfigure(1, weight=1, uniform='column')
-        self.root.columnconfigure(2, weight=1, uniform='column')
 
         # Configure the row weights(lengths)
         self.root.rowconfigure(0, weight=8, uniform='row')
@@ -35,14 +34,14 @@ class MainFrame:
 
         # Weather Label
         self.weather_text = Label(self.root, compound="left", background='black', foreground='white', font=("Arial", 25))
-        self.weather_text.grid(row=0, column=2, sticky='ne')
+        self.weather_text.grid(row=0, column=1, sticky='ne')
         self.get_weather()
 
         # News Label
         self.news_title_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 2, font=("Arial", 25))
-        self.news_title_text.grid(row=1, column=0, columnspan=3, sticky='sew')
+        self.news_title_text.grid(row=1, column=0, columnspan=2, sticky='sew')
         self.news_abstract_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 2)
-        self.news_abstract_text.grid(row=2, column=0, columnspan=3, sticky='new')
+        self.news_abstract_text.grid(row=2, column=0, columnspan=2, sticky='new')
         self.get_news()
 
         self.root.mainloop()

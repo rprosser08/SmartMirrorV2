@@ -6,7 +6,7 @@ class Date:
     # Returns the current date
     def get_date():
         time_zone = pytz.timezone('US/Eastern')
-        current_date = datetime.now(time_zone).strftime("%A, %B %m, %Y")
+        current_date = datetime.now(time_zone).strftime("%A, %B %d, %Y")
         return current_date
 
 
