@@ -40,7 +40,7 @@ class MainFrame:
         # News Label
         self.news_title_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 2, font=("Arial", 25))
         self.news_title_text.grid(row=1, column=0, columnspan=2, sticky='sew')
-        self.news_abstract_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 2)
+        self.news_abstract_text = Label(self.root, background="black", foreground="white", wraplength=self.screen_width // 2, font=("Arial", 15))
         self.news_abstract_text.grid(row=2, column=0, columnspan=2, sticky='new')
         self.get_news()
 
