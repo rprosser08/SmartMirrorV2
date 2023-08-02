@@ -56,16 +56,19 @@ class MainFrame:
     # Responsible for updating the current weather every 1 minute
     def get_weather(self):
         # Get weather info
-        weather_info = Weather.weather_api_call()
+        weather = Weather.weather_api_call()
 
-        # Prepare the image for the tkinter label
-        icon = Image.open(weather_info[0])
-        weather_icon = ImageTk.PhotoImage(icon)
+        if weather:
+            self.weather_info = weather
 
-        # Place weather icon and weather temperature in the label
-        self.weather_text.configure(image=weather_icon, text=weather_info[1])
-        # Prevent garbage collection from collecting the weather icon
-        self.weather_text.image = weather_icon
+            # Prepare the image for the tkinter label
+            icon = Image.open(self.weather_info[0])
+            weather_icon = ImageTk.PhotoImage(icon)
+
+            # Place weather icon and weather temperature in the label
+            self.weather_text.configure(image=weather_icon, text=self.weather_info[1])
+            # Prevent garbage collection from collecting the weather icon
+            self.weather_text.image = weather_icon
         
         self.weather_text.after(60000, self.get_weather)
 
