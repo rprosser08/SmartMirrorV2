@@ -72,7 +72,9 @@ class MainFrame:
 
     # Responsible for getting the news articles information and resetting the counter
     def get_news(self):
-        self.news_articles = News.news_api_call()
+        articles = News.news_api_call()
+        if articles:
+            self.news_articles = articles
 
         self.i = 0
         self.update_news()
