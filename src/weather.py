@@ -7,7 +7,7 @@ class Weather:
     def weather_api_call():
         load_dotenv()
         WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
-        zip_code = 14201
+        zip_code = 14226
         response = requests.get(f"https://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={zip_code}").json()
 
         # Get the temperature and convert to int to remove decimals, then to a string to add "degree" F

@@ -1,4 +1,8 @@
 #!/bin/bash
+pip3 install virtualenv
+virtualenv smart_mirror
+. smart_mirror/bin/activate
+
 pip3 install -r requirements.txt
 
 echo What is your zip code?
