@@ -18,13 +18,15 @@ class Weather:
             r.raise_for_status()
             response = r.json()
 
-            # Get the temperature and convert to int to remove decimals, then to a string to add "degree" F
-            weather_temp = str(int(response['current']['temp_f'])) + "\u00B0F"
+            try:
+                # Get the temperature and convert to int to remove decimals, then to a string to add "degree" F
+                weather_temp = str(int(response['current']['temp_f'])) + "\u00B0F"
+                # Get the path to icon and format to the file structure
+                full_icon_path = response['current']['condition']['icon']
+                icon_path = "static/" + full_icon_path.split('com/')[1]
+            except KeyError:
+                return None
 
-            # Get the path to icon and format to the file structure
-            full_icon_path = response['current']['condition']['icon']
-            icon_path = "static/" + full_icon_path.split('com/')[1]
-        
             return icon_path, weather_temp
         except requests.exceptions.HTTPError as errh:
             logger.error(errh)

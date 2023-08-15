@@ -20,12 +20,16 @@ class News:
             r.raise_for_status()
             response = r.json()
 
+            try:
             # Get the articles necessary information
-            for article in response['results']:
-                info = {}
-                info['title'] = article['title']
-                info['abstract'] = article['abstract']
-                articles.append(info)
+                for article in response['results']:
+                    info = {}
+                    info['title'] = article['title']
+                    info['abstract'] = article['abstract']
+                    articles.append(info)
+            except KeyError:
+                return []
+
         except requests.exceptions.HTTPError as errh:
             logger.error(errh)
         except requests.exceptions.ConnectionError as errc:
